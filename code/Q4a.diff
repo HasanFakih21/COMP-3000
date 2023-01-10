@@ -1,0 +1,24 @@
+*** 3000shell.c	2021-01-22 00:57:39.000000000 -0500
+--- 3000shell_modifiedQ4a.c	2022-02-08 21:38:30.108000000 -0500
+***************
+*** 290,295 ****
+--- 290,308 ----
+                          args[nargs] = NULL;
+                  }
+  
++ 		if(strcmp(args[0], "export") == 0) {
++ 			int i = 0;
++ 			while(envp[i] != NULL) {
++ 				i++;
++ 			}
++ 			envp[i-1] = args[nargs-1];
++ 			putenv(args[nargs-1]);
++ 		}
++ 
++ 		 if(args[nargs-1][0] == '$') {
++                         args[nargs-1] = getenv(args[nargs-1]+1);
++                 }
++ 
+                  stdout_fn = NULL;
+                  for (i = 1; i < nargs; i++) {
+                          if (args[i][0] == '>') {

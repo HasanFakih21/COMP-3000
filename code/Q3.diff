@@ -1,0 +1,15 @@
+*** 3000shell.c	2021-01-22 00:57:39.000000000 -0500
+--- 3000shell_modifiedQ3.c	2022-02-08 16:22:43.596000000 -0500
+***************
+*** 290,295 ****
+--- 290,299 ----
+                          args[nargs] = NULL;
+                  }
+  
++ 		if(args[nargs-1][0] == '$') {
++ 			args[nargs-1] = getenv(args[nargs-1]+1);
++ 		}
++ 
+                  stdout_fn = NULL;
+                  for (i = 1; i < nargs; i++) {
+                          if (args[i][0] == '>') {
